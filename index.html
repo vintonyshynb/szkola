@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Generator figur</title>
+</head>
+
+<body>
+    <div class="controls" aria-label="Kontrolki generatora figur">
+        <h3>Generator figur</h3>
+
+        <label for="shape">Figura</label>
+        <select id="shape">
+            <option value="square">Kwadrat</option>
+            <option value="rectangle">Prostokąt</option>
+            <option value="triangle">Trójkąt</option>
+            <option value="circle">Koło</option>
+            <option value="ellipse">Elipsa</option>
+            <option value="polygon">Wielościan (5 boków)</option>
+        </select>
+
+        <div class="row">
+            <div style="flex:1">
+                <label for="width">Szerokość (px)</label>
+                <input id="width" type="number" min="10" value="150" />
+            </div>
+            <div style="flex:1">
+                <label for="height">Wysokość (px)</label>
+                <input id="height" type="number" min="10" value="150" />
+            </div>
+        </div>
+
+        <label for="fill">Kolor wypełnienia</label>
+        <input id="fill" type="color" value="#ff6b6b" />
+
+        <label for="stroke">Kolor obrysu (pusty = brak)</label>
+        <input id="stroke" type="color" value="#333333" />
+
+        <label for="strokeWidth">Grubość obrysu (px)</label>
+        <input id="strokeWidth" type="number" min="0" value="2" />
+
+        <div class="row">
+            <button id="draw">Generuj</button>
+            <button id="random">Losuj</button>
+            <button id="clear" style="background:#e24b4b">Wyczyść</button>
+        </div>
+
+        <p class="hint">Ustaw wymiary i kolor, wybierz figurę i kliknij "Generuj". "Losuj" wypełnia pola losowymi
+            wartościami.</p>
+    </div>
+
+    <div class="playground" role="region" aria-label="Obszar rysowania">
+        <svg id="canvas" viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svgTitle">
+            <title id="svgTitle">Obszar rysowania</title>
+            <rect x="0" y="0" width="800" height="420" fill="transparent"></rect>
+        </svg>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
