@@ -1,0 +1,192 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Wrz 18, 2025 at 01:47 PM
+-- Wersja serwera: 10.4.32-MariaDB
+-- Wersja PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `polska`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `miasta`
+--
+
+CREATE TABLE `miasta` (
+  `id` int(11) NOT NULL,
+  `nazwa` varchar(100) NOT NULL,
+  `wojewodztwo_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `miasta`
+--
+
+INSERT INTO `miasta` (`id`, `nazwa`, `wojewodztwo_id`) VALUES
+(1, 'Wrocław', 1),
+(2, 'Legnica', 1),
+(3, 'Jelenia Góra', 1),
+(4, 'Bydgoszcz', 2),
+(5, 'Toruń', 2),
+(6, 'Włocławek', 2),
+(7, 'Lublin', 3),
+(8, 'Zamość', 3),
+(9, 'Chełm', 3),
+(10, 'Zielona Góra', 4),
+(11, 'Gorzów Wielkopolski', 4),
+(12, 'Nowa Sól', 4),
+(13, 'Łódź', 5),
+(14, 'Piotrków Trybunalski', 5),
+(15, 'Tomaszów Mazowiecki', 5),
+(16, 'Kraków', 6),
+(17, 'Tarnów', 6),
+(18, 'Nowy Sącz', 6),
+(19, 'Warszawa', 7),
+(20, 'Radom', 7),
+(21, 'Płock', 7),
+(22, 'Opole', 8),
+(23, 'Kędzierzyn-Koźle', 8),
+(24, 'Nysa', 8),
+(25, 'Rzeszów', 9),
+(26, 'Przemyśl', 9),
+(27, 'Stalowa Wola', 9),
+(28, 'Białystok', 10),
+(29, 'Łomża', 10),
+(30, 'Suwałki', 10),
+(31, 'Gdańsk', 11),
+(32, 'Gdynia', 11),
+(33, 'Sopot', 11),
+(34, 'Katowice', 12),
+(35, 'Częstochowa', 12),
+(36, 'Gliwice', 12),
+(37, 'Kielce', 13),
+(38, 'Starachowice', 13),
+(39, 'Skarżysko-Kamienna', 13),
+(40, 'Olsztyn', 14),
+(41, 'Elbląg', 14),
+(42, 'Ełk', 14),
+(43, 'Poznań', 15),
+(44, 'Kalisz', 15),
+(45, 'Konin', 15),
+(46, 'Szczecin', 16),
+(47, 'Koszalin', 16),
+(48, 'Świnoujście', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `osoby`
+--
+
+CREATE TABLE `osoby` (
+  `id` int(11) NOT NULL,
+  `imie` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `wojewodztwa`
+--
+
+CREATE TABLE `wojewodztwa` (
+  `id` int(11) NOT NULL,
+  `nazwa` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `wojewodztwa`
+--
+
+INSERT INTO `wojewodztwa` (`id`, `nazwa`) VALUES
+(1, 'dolnośląskie'),
+(2, 'kujawsko-pomorskie'),
+(3, 'lubelskie'),
+(4, 'lubuskie'),
+(5, 'łódzkie'),
+(6, 'małopolskie'),
+(7, 'mazowieckie'),
+(8, 'opolskie'),
+(9, 'podkarpackie'),
+(10, 'podlaskie'),
+(11, 'pomorskie'),
+(12, 'śląskie'),
+(13, 'świętokrzyskie'),
+(14, 'warmińsko-mazurskie'),
+(15, 'wielkopolskie'),
+(16, 'zachodniopomorskie');
+
+--
+-- Indeksy dla zrzutów tabel
+--
+
+--
+-- Indeksy dla tabeli `miasta`
+--
+ALTER TABLE `miasta`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `wojewodztwo_id` (`wojewodztwo_id`);
+
+--
+-- Indeksy dla tabeli `osoby`
+--
+ALTER TABLE `osoby`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `wojewodztwa`
+--
+ALTER TABLE `wojewodztwa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `miasta`
+--
+ALTER TABLE `miasta`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT for table `osoby`
+--
+ALTER TABLE `osoby`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wojewodztwa`
+--
+ALTER TABLE `wojewodztwa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `miasta`
+--
+ALTER TABLE `miasta`
+  ADD CONSTRAINT `miasta_ibfk_1` FOREIGN KEY (`wojewodztwo_id`) REFERENCES `wojewodztwa` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
